@@ -17,14 +17,14 @@ def convert_to_date(datestring):
     day = int(datestring[8:10])
     return date(year,month,day)
 
-def find_gamefiles(dates, home, away):
+def find_gamefiles(dates, teams):
     """
     returns filenames for games between the dates
     with the given home and away teams
 
     dates = ['yyyy-mm-day', 'yyyy-mm-day']
-    home = list of 3 letter team codes
-    away = list of 3 letter team codes
+    teampairs = [[gsw, cle], [mil, lac]] would get
+    all games between the dates for gsw @ cle and mil @ lac.
     """
 
     filenames = []
@@ -50,12 +50,11 @@ def find_gamefiles(dates, home, away):
                 game_date = convert_to_date(f[1:11])
             except:
                 game_date = date(1000, 1, 1)
-            awayteam = f[24:27]
-            hometeam = f[28:31]
+            away = f[24:27]
+            home = f[28:31]
 
-            if hometeam in home and awayteam in away and \
-                dates[0] <= game_date <= dates[1]:
-                    filenames.append(directory + f)
+            if [away, home] in teams and dates[0] <= game_date <= dates[1]:
+                filenames.append(directory + f)
 
     return filenames
 
