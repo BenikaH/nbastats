@@ -587,8 +587,32 @@ def get_players(gamefile):
     for line in lines:
         for i in range(5):
             if line[8 + i] not in home_roster:
-                home_roster += line[8 + i]
+                home_roster.append(line[8 + i])
             if line[3 + i] not in away_roster:
-                away_roster += line[3 + i]
+                away_roster.append(line[3 + i])
 
     return home_roster, away_roster
+
+def get_lineups(gamefile):
+    """
+    returns all lineups used in the game, but not other stats
+    """
+    f = open(gamefile, "r")
+    lines = f.readlines()
+    f.close()
+
+    home_lineups = []
+    away_lineups = []
+
+    for line in lines:
+        home_lineup = []
+        away_lineup = []
+        for i in range(5):
+            away_lineup.append(line[3 + i])
+            home_lineup.append(line[8 + i])
+            if away_lineup not in away_lineups:
+                away_lineups.append(away_lineup)
+            if home_lineup not in home_lineups:
+                home_lineups.append(home_lineup)
+
+    return home_lineups, away_lineups
