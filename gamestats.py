@@ -3,20 +3,11 @@ Module for stats from a single game.
 """
 
 from datetime import date
+from misc import convert_to_date
 import numpy as np
 import pandas as pd
 import re
 import os
-
-def convert_to_date(datestring):
-    """
-    returns date from a string with format
-    datestring = 'yyyy-mm-dd'
-    """
-    year = int(datestring[:4])
-    month = int(datestring[5:7])
-    day = int(datestring[8:10])
-    return date(year,month,day)
 
 def convert_time(timestring):
     """
