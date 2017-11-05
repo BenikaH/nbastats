@@ -232,12 +232,12 @@ def get_lineup_stats(team, players, gamefiles, return_raw = False):
         lines = gamelog.readlines()
         gamelog.close()
         
-        if f.index(team) == 24:
-            player_index = 3
-        else:
+        if team == f[-7:-4]: # indicates that team is the home team
             player_index = 8
+        else:
+            player_index = 3
 
-        for i in range(1,len(lines)):
+        for i in range(1, len(lines)):
             line = lines[i].split(',')
             
             # determine if the given lineup is involved
@@ -572,3 +572,23 @@ def get_lineup_stats(team, players, gamefiles, return_raw = False):
         return stats, opp_stats, raw_stats, raw_opp_stats, games_played
     else:
         return stats, opp_stats, games_played
+
+def get_players(gamefile):
+    """
+    Returns the home and away players that played in a game.
+    """
+    f = open(gamefile, "r")
+    lines = f.readlines()
+    f.close()
+
+    home_roster = []
+    away_roster = []
+
+    for line in lines:
+        for i in range(5):
+            if line[8 + i] not in home_roster:
+                home_roster += line[8 + i]
+            if line[3 + i] not in away_roster:
+                away_roster += line[3 + i]
+
+    return home_roster, away_roster
