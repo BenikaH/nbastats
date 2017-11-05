@@ -130,7 +130,8 @@ def summarize_game(filename):
 
     # print team advanced stats, ortg, drtg, etc.
 
-def get_lineup_stats(team, players, gamefiles, return_raw = False):
+def get_lineup_stats(team, players, gamefiles, return_raw = False, \
+        whole_team = False):
     """
     team = three letter team code (caps)
     players = list of at least five players to get stats for
@@ -242,10 +243,11 @@ def get_lineup_stats(team, players, gamefiles, return_raw = False):
             
             # determine if the given lineup is involved
             players_in = 0
-            for j in range(5):
-                if line[player_index+j] in players:
-                    players_in += 1
-            if players_in == 5 or players_in == len(players):
+            if !whole_team:
+                for j in range(5):
+                    if line[player_index + j] in players:
+                        players_in += 1
+            if players_in == 5 or players_in == len(players) or whole_team:
                 # the current lineup is playing, so let's do stuff
                 time_played += convert_time(line[18])
                 if not in_game:
