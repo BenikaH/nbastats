@@ -2,6 +2,8 @@
 miscellaneous helper functions
 """
 
+from datetime import date
+
 # constants
 ALL_TEAMS = [
     "ATL", "BOS", "BKN", "CHA", "CHI",

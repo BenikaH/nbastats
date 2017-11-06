@@ -226,15 +226,17 @@ def get_lineup_stats(team, players, gamefiles, return_raw = False, \
         
         if team == f[-7:-4]: # indicates that team is the home team
             player_index = 8
-        else:
+        elif team == f[-11:-8]:
             player_index = 3
+        else:
+            continue
 
         for i in range(1, len(lines)):
             line = lines[i].split(',')
             
             # determine if the given lineup is involved
             players_in = 0
-            if !whole_team:
+            if not whole_team:
                 for j in range(5):
                     if line[player_index + j] in players:
                         players_in += 1
