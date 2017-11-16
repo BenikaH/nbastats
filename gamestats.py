@@ -543,24 +543,24 @@ def get_lineup_stats(team, players, gamefiles, return_raw = False, \
     else:
         opp_stats['ts%'] = raw_opp_stats['pts'] / \
           (2 * (raw_opp_stats['fga'] + 0.44 * raw_opp_stats['fta']))
-    if raw_stats['fga'] == 0:
-        stats['efg%'] = 0
+    if raw_opp_stats['fga'] == 0:
+        opp_stats['efg%'] = 0
     else:
-        stats['efg%'] = (0.5 * raw_stats['3p'] + raw_stats['fg']) / \
-                raw_stats['fga']
+        opp_stats['efg%'] = (0.5 * raw_opp_stats['3p'] + raw_opp_stats['fg']) / \
+                raw_opp_stats['fga']
     if poss == 0:
-        stats['to%'] = 0
+        opp_stats['to%'] = 0
     else:
-        stats['to%'] = raw_stats['tov'] / poss
-    if raw_stats['orb'] + raw_opp_stats['drb'] == 0:
-        stats['orb%'] = 0
+        opp_stats['to%'] = raw_opp_stats['tov'] / poss
+    if raw_opp_stats['orb'] + raw_stats['drb'] == 0:
+        opp_stats['orb%'] = 0
     else:
-        stats['orb%'] = raw_stats['orb'] / (raw_stats['orb'] + \
-                raw_opp_stats['drb'])
-    if raw_stats['fga'] == 0:
-        stats['ftr'] = 0
+        opp_stats['orb%'] = raw_opp_stats['orb'] / (raw_opp_stats['orb'] + \
+                raw_stats['drb'])
+    if raw_opp_stats['fga'] == 0:
+        opp_stats['ftr'] = 0
     else:
-        stats['ftr'] = raw_stats['fta'] / raw_stats['fga']
+        opp_stats['ftr'] = raw_opp_stats['fta'] / raw_opp_stats['fga']
     opp_stats['pts'] = raw_opp_stats['pts']
 
     if return_raw:
