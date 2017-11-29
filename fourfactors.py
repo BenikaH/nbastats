@@ -52,5 +52,33 @@ def make_model(dates):
     print(linear.intercept_)
     print(r2_score(y, y_pred))
 
+    return -1
+
+def visualize_factors(team, dates):
+    """
+    Plots 8 graphs for how the teams overall four factors
+    change during the given time frame.
+
+    team = three letter team code string, e.g., "CLE"
+    dates as usual.
+    """
+    team_combos = []
+    for i in range(len(misc.ALL_TEAMS)):
+        team_combos.append([team, misc.ALL_TEAMS[i]])
+        team_combos.append([misc.ALL_TEAMS[i], team])
+
+    startdate = misc.convert_to_date(date[0])
+    enddate = misc.convert_to_date(date[1])
+    diffdays = -1 # number of days between the two
+    for i in range(diffdays):
+        # get the stats for the date range, append data to proper lists
+        # construct the date range strings as [dates[0], str(dates[0]+i days)]
+        continue
+
+    # MATPLOT LIB STUFFF. x-axis is game number, not date.
+    # plot all 8 plots. Hopefully things clear from visuals
 
     return -1
+
+# add function to visualize game to game four factors changes? at leats ORTG, 
+# DRTG
