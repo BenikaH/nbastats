@@ -112,17 +112,16 @@ def visualize_factors(team, dates):
     diffs_opp_orbp = []
     diffs_opp_ftr = []
     for i in range(len(efgp) - 1):
-        diffs_efgp.append((efgp[i + 1] - efgp[i]) / abs(efgp[i]))
-        diffs_top.append((top[i + 1] - top[i]) / abs(top[i]))
-        diffs_orbp.append((orbp[i + 1] - orbp[i]) / abs(orbp[i]))
-        diffs_ftr.append((ftr[i + 1] - ftr[i]) / abs(ftr[i]))
-        diffs_opp_efgp.append(
+        diffs_efgp.append(100 * (efgp[i + 1] - efgp[i]) / abs(efgp[i]))
+        diffs_top.append(100 * (top[i + 1] - top[i]) / abs(top[i]))
+        diffs_orbp.append(100 * (orbp[i + 1] - orbp[i]) / abs(orbp[i]))
+        diffs_ftr.append(100 * (ftr[i + 1] - ftr[i]) / abs(ftr[i]))
+        diffs_opp_efgp.append(100 * 
                 (opp_efgp[i + 1] - opp_efgp[i]) / abs(opp_efgp[i]))
-        diffs_opp_top.append((opp_top[i + 1] - opp_top[i]) / abs(opp_top[i]))
-        diffs_opp_orbp.append(
+        diffs_opp_top.append(100 * (opp_top[i + 1] - opp_top[i]) / abs(opp_top[i]))
+        diffs_opp_orbp.append(100 * 
                 (opp_orbp[i + 1] - opp_orbp[i]) / abs(opp_orbp[i]))
-        diffs_opp_ftr.append((opp_ftr[i + 1] - opp_ftr[i]) / abs(opp_ftr[i]))
-
+        diffs_opp_ftr.append(100 * (opp_ftr[i + 1] - opp_ftr[i]) / abs(opp_ftr[i]))
 
 
     fig, ((ax1, ax2, ax3), (ax4, ax5, ax6), (ax7, ax8, ax9)) \
@@ -240,7 +239,10 @@ def visualize_factors(team, dates):
     ax92.plot(range(2, len(opp_ftr) + 1), diffs_opp_ftr, color = color)
     ax92.tick_params(axis = 'y', labelcolor = color)
 
-    ax5.set_xlabel(team)
+    ax5.axis([-1, 1, -1, 1])
+    ax5.text(0, 0.1, team, fontsize = 12, ha = 'center')
+    ax5.text(0, -0.1, dates, fontsize = 10, ha = 'center')
+    ax5.axis('off')
 
     fig.tight_layout()
     plt.show()
