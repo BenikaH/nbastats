@@ -126,8 +126,11 @@ def visualize_factors(team, dates):
 
     # plot the middle stuff
     axes[1, 1].axis([-1, 1, -1, 1])
-    axes[1, 1].text(0, 0.1, team, fontsize = 12, ha = 'center')
-    axes[1, 1].text(0, -0.1, dates, fontsize = 10, ha = 'center')
+    axes[1, 1].text(0, 0.1, team, fontsize = 14, weight = 'bold',
+            ha = 'center', color = misc.TEAM_COLORS[team][0],
+            bbox = {'facecolor':misc.TEAM_COLORS[team][1],
+                'alpha':0.5, 'pad':10})
+    axes[1, 1].text(0, -0.4, dates, fontsize = 10, ha = 'center')
     axes[1, 1].axis('off')
 
     fig.tight_layout()
